@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>
+        <%= meal ? meal.strMeal : `Recipe Details` %>
+    </title>
+</head>
+
+<body>
+    <div class="container recipe-detail-container ">
+        <% if(error){ %>
+            <p class="error-message" > 
+                <%= error %>
+            </p>
+            <% } %>
+
+              <%  if(meal){  %>
+                <header class="recipe-detail-header">
+                    <h1>
+                        <%= meal.strMeal %>
+                    </h1>
+                    <p class="recipe-meta">Category: <%= meal.strCategory %> | Area: <%= meal.strArea %>
+                    </p>
+                </header>
+
+                <div class="recipe-layout">
+                    <div class="recipe-image">
+                        <img src=" <%= meal.strMealThumb %> " alt=" <%= meal.strMeal %> ">
+                    </div>
+
+                    <div class="recipe-ingredients">
+                        <h2>Ingredients</h2>
+                        <ul>
+                            <% ingredients.forEach((ingredient) => { %>
+                                    <li>
+                                        <%= ingredient %>
+                                    </li>
+                                    <% }) %>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="recipe-instructions">
+                    <h2>Instructions</h2>
+                    <p> <%= meal.strInstructions%> </p>
+                </div>
+            <%  }  %>
+
+        <a href="/" class="back-link" >Back To Search</a>
+
+    </div>
+</body>
+
+</html>

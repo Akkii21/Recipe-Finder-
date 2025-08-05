@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Recipe Finder</title>
+</head>
+
+<body>
+    <div class="hero-header">
+        <header>
+            <h1>Recipe Finder</h1>
+            <p>Find recipes based on the ingredients you have</p>
+            <form action="/search" method="POST" class="search-form">
+                <input type="text" name="ingredient" placeholder="e.g chicken, beef, eggs">
+                <button type="submit">Find Recipes</button>
+            </form>
+        </header>
+    </div>
+
+    <div class="container">
+        <% if(error){ %>
+            <p>
+                <%= error %>
+            </p>
+            <% } %>
+
+                <% if(meals){ %>
+                    <main class="recipe-grid">
+                        <% meals.forEach(meal=>{ %>
+                            <a href="/recipe/ <%= meal.idMeal %>" class="recipe-card">
+                                <img src="<%= meal.strMealThumb %>/preview" alt="<%= meal.strMeal %>">
+                                <div class="card-title">
+                                    <h3>
+                                        <%= meal.strMeal %>
+                                    </h3>
+                                </div>
+                            </a>
+                            <% }) %>
+                    </main>
+                <% } %>
+    </div>
+</body>
+
+</html>
